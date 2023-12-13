@@ -1,0 +1,171 @@
+// BRESENHAM LINE
+#include <graphics.h>
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+void main()
+{
+int gd= DETECT, gm;
+initgraph(&gd, &gm, "C:\\TC\\bgi");
+int X1=100,Y1=100,X2=500,Y2=200,X,Y,S1,S2,interchange;
+X=X1;
+Y=Y1;
+int dX=abs(X2-X1);
+int dY=abs(Y2-Y1);
+if(dX>0)
+{
+ S1=1;
+}
+else
+{
+ S1=-1;
+}
+if(dY>0)
+{
+ S2=1;
+}
+else
+{
+ S2=-1;
+}
+if(dY>dX)
+{
+ int T=dX;
+ dX=dY;
+ dY=T;
+ interchange=1;
+}
+else
+{
+ interchange=0;
+}
+int E=2*dY-dX;
+for(int i=1;i<=dX;i++)
+{
+ putpixel(X,Y,WHITE);
+ while(E>0)
+ {
+ if (interchange==1)
+ {
+ X=X+S1;
+ }
+ else
+ {
+ Y=Y+S2;
+ }
+ E=E-2*dX;
+ }
+ if (interchange==1)
+ {
+ Y=Y+S2;
+ }
+ else
+ {
+ X=X+S1;
+ }
+ E=E+2*dY;
+}
+getch();
+closegraph();
+}
+
+
+// DDA LINE
+include<graphics.h>
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+void main()
+{
+Int X,Y,X_in, Y_in, length, i;
+int gd=DETECT, gm;
+initgraph(&gd,&gm, "C:\\TC\\bgi");
+int X1=100,X2=200,Y1=100,Y2=200;
+length = (X2-X1);
+if((Y2-Y1)>length)
+{
+length = (Y2-Y1);
+}
+X_in = (X2-X1)/length;
+Y_in = (Y2-Y1)/length;
+X=X1+0.5;
+Y=Y1+0.5;
+for(i=1; i<=length; i++)
+{
+putpixel(X,Y,RED);
+X=X+X_in;
+Y=Y+Y_in;
+}
+getch();
+closegraph();
+}
+
+
+// BRESENHAM CIRCLE
+#include <graphics.h>
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+void main()
+{
+int gd= DETECT, gm;
+initgraph(&gd, &gm, "C:\\TC\\bgi");
+int x=0,r=100, y=r, v=3-2*r, k=100, h=100;
+while(x<=y)
+{
+putpixel(x+h , y+k, WHITE);
+putpixel(-x+h , -y+k, WHITE);
+putpixel(y+h , x+k, WHITE);
+putpixel(-y+h , -x+k, WHITE);
+putpixel(-y+h , x+k, WHITE);
+putpixel(y+h , -x+k, WHITE);
+putpixel(-x+h , y+k, WHITE);
+putpixel(x+h , -y+k, WHITE);
+if(v<0)
+v=v+4*x+6;
+else
+{
+v=v+4*(x-y)+10;
+y--;
+}
+x++;
+}
+getch();
+closegraph();
+}
+
+
+// MID-POINT CIRCLE
+#include<graphics.h>
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+void main()
+{
+int gd=DETECT, gm;
+initgraph(&gd,&gm, "C:\\TC\\bgi");
+int x=0, r=100, y=r, p=1-r, k=100, h=100;
+while(x<=y)
+{
+putpixel(x+h, y+k, WHITE);
+putpixel(-x+h, -y+k, WHITE);
+putpixel(y+h, x+k, WHITE);
+putpixel(-y+h,-x+k, WHITE);
+putpixel(-y+h, x+k, WHITE);
+putpixel(y+h, -x+k, WHITE);
+putpixel(-x+h, y+k, WHITE);
+putpixel(x+h, -y+k, WHITE);
+if(p<0)
+{
+p=p+2*x+3;
+}
+else
+{
+p=p+2*(x-y)+5;
+y--;
+}
+x++;
+}
+getch();
+closegraph();
+}
